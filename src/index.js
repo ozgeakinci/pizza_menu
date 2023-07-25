@@ -57,13 +57,16 @@ const App = () => {
   );
 };
 
-const Pizza = () => {
+const Pizza = (props) => {
   return (
-    <>
-      <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </>
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h2>{props.name}</h2>
+        <p>{props.ingredients}</p>
+        <span>{props.price}</span>
+      </div>
+    </div>
   );
 };
 
@@ -75,7 +78,6 @@ const Header = () => {
   const style = {};
   return (
     <header className="header">
-      {" "}
       <h1 style={style}>Fast React Pizza Co.</h1>
     </header>
   );
@@ -85,9 +87,19 @@ const Menu = () => {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        price={10}
+      />
+      <Pizza
+        name="Pizza Mushrooms"
+        ingredients="Tomato, mushrooms"
+        photoName="pizzas/funghi.jpg"
+        price="12"
+      />
+      <Pizza name="Pizza Salad" photoName="pizzas/margherita.jpg" price="100" />
     </main>
   );
 };
@@ -95,8 +107,7 @@ const Menu = () => {
 const Footer = () => {
   return (
     <footer className="footer">
-      {" "}
-      {new Date().toLocaleTimeString()}. We're current open{" "}
+      {new Date().toLocaleTimeString()}. We're current open
     </footer>
   );
 };
