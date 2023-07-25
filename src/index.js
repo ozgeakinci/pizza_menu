@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom/client";
+import "./index.css";
 
 const pizzaData = [
   {
@@ -48,11 +49,11 @@ const pizzaData = [
 
 const App = () => {
   return (
-    <>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
-    </>
+    </div>
   );
 };
 
@@ -67,23 +68,36 @@ const Pizza = () => {
 };
 
 const Header = () => {
-  return <h1>Fast React Pizza Co.</h1>;
+  //Style jsx te bir nesne olarak tanımlanır inline olarak css tanımlamak istiyorsak bu şekilde bir nesne yaratıp style'ın içine tanımladığımız nesneyi verebiliriz.
+  //   const style = { color: "red", fontSize: "48px" };
+  // şimdilik geçerli olmaması iöçin style boş nesne olarak veriyoruz.
+
+  const style = {};
+  return (
+    <header className="header">
+      {" "}
+      <h1 style={style}>Fast React Pizza Co.</h1>
+    </header>
+  );
 };
 
 const Menu = () => {
   return (
-    <div>
+    <main className="menu">
       <h2>Our Menu</h2>
       <Pizza />
       <Pizza />
       <Pizza />
-    </div>
+    </main>
   );
 };
 
 const Footer = () => {
   return (
-    <footer> {new Date().toLocaleTimeString()}. We're current open </footer>
+    <footer className="footer">
+      {" "}
+      {new Date().toLocaleTimeString()}. We're current open{" "}
+    </footer>
   );
 };
 
