@@ -4,6 +4,7 @@ import "./index.css";
 
 const pizzaData = [
   {
+    id: 0,
     name: "Focaccia",
     ingredients: "Bread with italian olive oil and rosemary",
     price: 6,
@@ -11,6 +12,7 @@ const pizzaData = [
     soldOut: false,
   },
   {
+    id: 1,
     name: "Pizza Margherita",
     ingredients: "Tomato and mozarella",
     price: 10,
@@ -18,6 +20,7 @@ const pizzaData = [
     soldOut: false,
   },
   {
+    id: 2,
     name: "Pizza Spinaci",
     ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
     price: 12,
@@ -25,6 +28,7 @@ const pizzaData = [
     soldOut: false,
   },
   {
+    id: 3,
     name: "Pizza Funghi",
     ingredients: "Tomato, mozarella, mushrooms, and onion",
     price: 12,
@@ -32,6 +36,7 @@ const pizzaData = [
     soldOut: false,
   },
   {
+    id: 299,
     name: "Pizza Salamino",
     ingredients: "Tomato, mozarella, and pepperoni",
     price: 15,
@@ -39,6 +44,7 @@ const pizzaData = [
     soldOut: true,
   },
   {
+    id: 562,
     name: "Pizza Prosciutto",
     ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
     price: 18,
@@ -53,19 +59,6 @@ const App = () => {
       <Header />
       <Menu />
       <Footer />
-    </div>
-  );
-};
-
-const Pizza = (props) => {
-  return (
-    <div className="pizza">
-      <img src={props.photoName} alt={props.name} />
-      <div>
-        <h2>{props.name}</h2>
-        <p>{props.ingredients}</p>
-        <span>{props.price}</span>
-      </div>
     </div>
   );
 };
@@ -87,7 +80,14 @@ const Menu = () => {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza
+      <ul className="pizzas ">
+        {/* List rendring datayı çekerek dinamik olarak oluşrueduğumuz */}
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.id} />
+        ))}
+      </ul>
+      {/* Manuel olarak elle yazdığımız */}
+      {/* <Pizza
         name="Pizza Spinaci"
         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
         photoName="pizzas/spinaci.jpg"
@@ -99,8 +99,20 @@ const Menu = () => {
         photoName="pizzas/funghi.jpg"
         price="12"
       />
-      <Pizza name="Pizza Salad" photoName="pizzas/margherita.jpg" price="100" />
+      <Pizza name="Pizza Salad" photoName="pizzas/margherita.jpg" price="100" /> */}
     </main>
+  );
+};
+const Pizza = (props) => {
+  return (
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div>
+        <h2>{props.pizzaObj.name}</h2>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
+      </div>
+    </li>
   );
 };
 
