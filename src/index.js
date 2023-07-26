@@ -77,15 +77,23 @@ const Header = () => {
 };
 
 const Menu = () => {
+  const pizzas = pizzaData;
+  // const pizzas = [];
+  const numPizzas = pizzas.length;
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <ul className="pizzas ">
-        {/* List rendring datayı çekerek dinamik olarak oluşrueduğumuz */}
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.id} />
-        ))}
-      </ul>
+      {/* Burada numPizzas pizza boş arrayken sıfır yani falsy değerdir. Bu sebeple ul kısmı hiç çalışmaz ve bu sebeple ekrana 0 yazdırılır. Bunun olmaması için numPizzas büyütür sıfırdan yapabiliriz. O zaman ekranda 0 görmeyiz*/}
+      {numPizzas > 0 && (
+        <ul className="pizzas ">
+          {/* List rendring datayı çekerek dinamik olarak oluşrueduğumuz */}
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.id} />
+          ))}
+        </ul>
+      )}
+
       {/* Manuel olarak elle yazdığımız */}
       {/* <Pizza
         name="Pizza Spinaci"
@@ -117,9 +125,22 @@ const Pizza = (props) => {
 };
 
 const Footer = () => {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+
+  console.log(isOpen);
+
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}. We're current open
+      <div className="order">
+        {/* And operatoru her zaman sol taraf true veya truty ise kısa devre yapar ve and operatöründen sonraki alanı gösterir. */}
+        {isOpen && (
+          <p>We're open until {closeHour}:00 . Come visit us or order online</p>
+        )}
+      </div>
+      <button className="btn">Order</button>
     </footer>
   );
 };

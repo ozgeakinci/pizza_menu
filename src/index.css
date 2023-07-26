@@ -172,6 +172,9 @@ body {
   padding: 1.4rem 3.2rem;
   cursor: pointer;
   transition: all 0.2s;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 2rem;
 }
 
 .btn:hover {
