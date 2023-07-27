@@ -51,14 +51,6 @@ const pizzaData = [
     photoName: "pizzas/prosciutto.jpg",
     soldOut: false,
   },
-  {
-    id: 563,
-    name: "Omur",
-    ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
-    price: 18,
-    photoName: "pizzas/prosciutto.jpg",
-    soldOut: false,
-  },
 ];
 
 const App = () => {
@@ -96,12 +88,18 @@ const Menu = () => {
       {/* && operatötü koyduğumuz zaman (numPizzas sonrası).. Şuan ternary ile yaptık.. Aynı şekilde çalışıyor ancak ternaryde false kısmınıda : sonrası tanımlayabiliyoruz.Burada numPizzas pizza boş arrayken sıfır yani falsy değerdir. Bu sebeple ul kısmı hiç çalışmaz ve bu sebeple ekrana 0 yazdırılır. Bunun olmaması için numPizzas büyütür sıfırdan yapabiliriz. O zaman ekranda 0 görmeyiz*/}
 
       {numPizzas > 0 ? (
-        <ul className="pizzas ">
-          {/* List rendring datayı çekerek dinamik olarak oluşrueduğumuz */}
-          {pizzas.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.id} />
-          ))}
-        </ul>
+        <>
+          <p>
+            Authentic Italian cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious.
+          </p>
+          <ul className="pizzas ">
+            {/* List rendring datayı çekerek dinamik olarak oluşrueduğumuz */}
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.id} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>We're still working on our menu. Please come back later</p>
       )}
@@ -125,13 +123,13 @@ const Menu = () => {
 };
 const Pizza = ({ pizzaObj }) => {
   return (
-    <li className="pizza">
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       {/* desturacturing props. Props nesnesini destruct etmek için süsülü parantaz açıp içindeki nesneyi alıyoruz. */}
       <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
         <h2>{pizzaObj.name}</h2>
         <p>{pizzaObj.ingredients}</p>
-        <span>{pizzaObj.price}</span>
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
     </li>
   );
