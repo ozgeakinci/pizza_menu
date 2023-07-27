@@ -137,9 +137,13 @@ const Pizza = (props) => {
 
 const Footer = () => {
   const hour = new Date().getHours();
-  const openHour = 20;
+  const openHour = 10;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
+
+  //Eary return : Genellikle ternary operator kullansakta bazı durumlarda React return dışında component içerisine de return tanımlamak isteyebiliriz.Burada returnin dışında if ile return tanımalayacağız. Aşağıdaki if ile kurulan yerde returnü render etmeden  direkt olarak if koşulunu döndürür.
+
+  if (!isOpen) return <h2>Closed</h2>;
 
   return (
     <footer className="footer">
