@@ -51,6 +51,14 @@ const pizzaData = [
     photoName: "pizzas/prosciutto.jpg",
     soldOut: false,
   },
+  {
+    id: 563,
+    name: "Omur",
+    ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
+    price: 18,
+    photoName: "pizzas/prosciutto.jpg",
+    soldOut: false,
+  },
 ];
 
 const App = () => {
@@ -78,20 +86,23 @@ const Header = () => {
 
 const Menu = () => {
   const pizzas = pizzaData;
-  // const pizzas = [];
+  //const pizzas = [];
   const numPizzas = pizzas.length;
 
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      {/* Burada numPizzas pizza boş arrayken sıfır yani falsy değerdir. Bu sebeple ul kısmı hiç çalışmaz ve bu sebeple ekrana 0 yazdırılır. Bunun olmaması için numPizzas büyütür sıfırdan yapabiliriz. O zaman ekranda 0 görmeyiz*/}
-      {numPizzas > 0 && (
+      {/* && operatötü koyduğumuz zaman (numPizzas sonrası).. Şuan ternary ile yaptık.. Aynı şekilde çalışıyor ancak ternaryde false kısmınıda : sonrası tanımlayabiliyoruz.Burada numPizzas pizza boş arrayken sıfır yani falsy değerdir. Bu sebeple ul kısmı hiç çalışmaz ve bu sebeple ekrana 0 yazdırılır. Bunun olmaması için numPizzas büyütür sıfırdan yapabiliriz. O zaman ekranda 0 görmeyiz*/}
+
+      {numPizzas > 0 ? (
         <ul className="pizzas ">
           {/* List rendring datayı çekerek dinamik olarak oluşrueduğumuz */}
           {pizzas.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.id} />
           ))}
         </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later</p>
       )}
 
       {/* Manuel olarak elle yazdığımız */}
@@ -126,18 +137,20 @@ const Pizza = (props) => {
 
 const Footer = () => {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 20;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
-
-  console.log(isOpen);
 
   return (
     <footer className="footer">
       <div className="order">
         {/* And operatoru her zaman sol taraf true veya truty ise kısa devre yapar ve and operatöründen sonraki alanı gösterir. */}
-        {isOpen && (
+        {isOpen ? (
           <p>We're open until {closeHour}:00 . Come visit us or order online</p>
+        ) : (
+          <p>
+            We're happy to welcome you between {openHour}:00 and {closeHour}:00
+          </p>
         )}
       </div>
       <button className="btn">Order</button>
