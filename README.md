@@ -1,3 +1,7 @@
+
+![pizza_menu](https://github.com/ozgeakinci/pizza_menu/assets/95983264/7bdbdb35-fca6-4755-b1f8-4de9ff843352)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
