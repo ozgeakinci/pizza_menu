@@ -143,24 +143,32 @@ const Footer = () => {
 
   //Eary return : Genellikle ternary operator kullansakta bazı durumlarda React return dışında component içerisine de return tanımlamak isteyebiliriz.Burada returnin dışında if ile return tanımalayacağız. Aşağıdaki if ile kurulan yerde returnü render etmeden  direkt olarak if koşulunu döndürür.
 
-  if (!isOpen) return <h2>Closed</h2>;
+  //if (!isOpen) return <h2>Closed</h2>;
 
   return (
     <footer className="footer">
       <div className="order">
         {/* And operatoru her zaman sol taraf true veya truty ise kısa devre yapar ve and operatöründen sonraki alanı gösterir. */}
         {isOpen ? (
-          <p>We're open until {closeHour}:00 . Come visit us or order online</p>
+          <Order closeHour={closeHour} />
         ) : (
           <p>
             We're happy to welcome you between {openHour}:00 and {closeHour}:00
           </p>
         )}
       </div>
-      <button className="btn">Order</button>
     </footer>
   );
 };
+
+//Burada order kısmı uzun geldiği için footer alanından ayırdık ve props olarak özelliklerini ilettik
+
+const Order = (props) => {
+  return (
+    <p>We're open until {props.closeHour}:00 . Come visit us or order online</p>
+  );
+};
+<button className="btn">Order</button>;
 
 //React v18 reactte bağlanmak için
 
