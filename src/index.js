@@ -76,10 +76,11 @@ const Header = () => {
   //   const style = { color: "red", fontSize: "48px" };
   // şimdilik geçerli olmaması iöçin style boş nesne olarak veriyoruz.
 
-  const style = {};
+  //const style = {};
   return (
     <header className="header">
-      <h1 style={style}>Fast React Pizza Co.</h1>
+      {/* <h1 style={{ color: "red", fontSize: "48px" }}>Fast React Pizza Co.</h1> */}
+      <h1>Fast React Pizza Co.</h1>
     </header>
   );
 };
@@ -122,14 +123,15 @@ const Menu = () => {
     </main>
   );
 };
-const Pizza = (props) => {
+const Pizza = ({ pizzaObj }) => {
   return (
     <li className="pizza">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      {/* desturacturing props. Props nesnesini destruct etmek için süsülü parantaz açıp içindeki nesneyi alıyoruz. */}
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h2>{props.pizzaObj.name}</h2>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
+        <h2>{pizzaObj.name}</h2>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.price}</span>
       </div>
     </li>
   );
@@ -163,10 +165,8 @@ const Footer = () => {
 
 //Burada order kısmı uzun geldiği için footer alanından ayırdık ve props olarak özelliklerini ilettik
 
-const Order = (props) => {
-  return (
-    <p>We're open until {props.closeHour}:00 . Come visit us or order online</p>
-  );
+const Order = ({ closeHour }) => {
+  return <p>We're open until {closeHour}:00 . Come visit us or order online</p>;
 };
 <button className="btn">Order</button>;
 
